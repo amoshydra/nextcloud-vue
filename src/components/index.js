@@ -61,6 +61,7 @@ import SettingsSection from './SettingsSection'
 import UserBubble from './UserBubble'
 import AppSettingsDialog from './AppSettingsDialog'
 import AppSettingsSection from './AppSettingsSection'
+import Button from './Button'
 
 export {
 	ActionButton,
@@ -103,4 +104,5 @@ export {
 	UserBubble,
 	AppSettingsDialog,
 	AppSettingsSection,
+	Button,
 }
