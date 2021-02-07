@@ -408,6 +408,8 @@ export default {
 			}
 			return {
 				href: this.href,
+				target: '_blank',
+				rel: 'noopenr',
 			}
 		},
 
