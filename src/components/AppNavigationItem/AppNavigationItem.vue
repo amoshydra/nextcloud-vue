@@ -122,7 +122,7 @@ Just set the `pinned` prop.
 		<!-- Icon and title -->
 		<a v-if="!undo"
 			class="app-navigation-entry-link"
-			href="#"
+			:href="normalizedHref"
 			@click="onClick">
 
 			<!-- icon if not collapsible -->
@@ -235,6 +235,19 @@ export default {
 			type: [String, Object],
 			default: '',
 		},
+
+		/**
+		 * Passing in a value will make the root element of this
+		 * component an `<a>`.
+		 *
+		 * `to` takes precedence if values are supplied to both
+		 * `to` and `href`.
+		 */
+		href: {
+			type: String,
+			default: undefined,
+		},
+
 		/**
 		* Pass in `true` if you want the matching behaviour to
 		* be non-inclusive: https://router.vuejs.org/api/#exact
@@ -385,6 +398,14 @@ export default {
 				is: 'li',
 			}
 		},
+
+		normalizedHref() {
+			if (this.to != null || this.href == null) {
+				return '#'
+			}
+			return this.href
+		},
+
 		isActive() {
 			return this.to && this.$route === this.to
 		},
