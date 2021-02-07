@@ -33,6 +33,7 @@
 
 ```
 <AppNavigationItem title="My title" icon="icon-category-enabled" />
+<AppNavigationItem title="My title" icon="icon-category-enabled" href="https://example.com" />
 
 ```
 * With a spinning loader instead of the icon:
@@ -122,7 +123,7 @@ Just set the `pinned` prop.
 		<!-- Icon and title -->
 		<a v-if="!undo"
 			class="app-navigation-entry-link"
-			:href="normalizedHref"
+			v-bind="anchorElement"
 			@click="onClick">
 
 			<!-- icon if not collapsible -->
@@ -399,11 +400,15 @@ export default {
 			}
 		},
 
-		normalizedHref() {
-			if (this.to != null || this.href == null) {
-				return '#'
+		anchorElement() {
+			if (this.to || this.href == null) {
+				return {
+					href: '#',
+				}
 			}
-			return this.href
+			return {
+				href: this.href,
+			}
 		},
 
 		isActive() {
